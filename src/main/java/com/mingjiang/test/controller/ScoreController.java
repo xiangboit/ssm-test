@@ -10,6 +10,7 @@ package com.mingjiang.test.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.mingjiang.test.bean.Score;
+import com.mingjiang.test.dto.DTO;
 import com.mingjiang.test.service.ScoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/11/21.
@@ -37,6 +41,16 @@ public class ScoreController {
         score1.setChangeType("玩游戏");
         int num=scoreService.insertScore(score1);
         System.out.println(""+num);
-        return JSON.toJSONString(score1);
+        DTO dto=new DTO();
+        if (score1 == null) {
+            dto.code = "-1";
+            dto.msg = "Have not registered";
+        } else {
+            //把用户登录信息放进Session
+            Map<String, Object> loginInfo = new HashMap();
+            loginInfo.put("Score", score1.getScore());
+            dto.data = loginInfo;
+        }
+        return JSON.toJSONString(dto);
     }
 }

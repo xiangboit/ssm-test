@@ -13,26 +13,22 @@ import java.util.Date;
 /**
  * Created by ${符柱成} on 2017/3/31.
  */
-public class Score {
-
+public class Gag {
     private Long id;
-    //积分变化类型
-    private String changeType;
-    //创建时间
+    //创建的时间
     private Date createTime;
-    //积分变化数
-    private Integer score;
-    //爱豆变化者
+    //禁言到某个时间
+    private Date gagTime;
+    //被禁言者
     private User user;
 
-    public Score() {
+    public Gag() {
     }
 
-    public Score(Long id, String changeType, Date createTime, Integer score, User user) {
+    public Gag(Long id, Date createTime, Date gagTime, User user) {
         this.id = id;
-        this.changeType = changeType;
         this.createTime = createTime;
-        this.score = score;
+        this.gagTime = gagTime;
         this.user = user;
     }
 
@@ -44,14 +40,6 @@ public class Score {
         this.id = id;
     }
 
-    public String getChangeType() {
-        return changeType;
-    }
-
-    public void setChangeType(String changeType) {
-        this.changeType = changeType;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -60,12 +48,12 @@ public class Score {
         this.createTime = createTime;
     }
 
-    public Integer getScore() {
-        return score;
+    public Date getGagTime() {
+        return gagTime;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setGagTime(Date gagTime) {
+        this.gagTime = gagTime;
     }
 
     public User getUser() {
